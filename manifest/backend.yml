@@ -1,22 +1,17 @@
-name: My pet app 🐾
+name: Contact Form ✉️
 entities:
-  Owner:
+  Contact:
     properties:
-      - name
-      - { name: birthdate, type: date }
-
-  Cat:
-    properties:
-      - name
-      - { name: age, type: number }
-      - { name: birthdate, type: date }
-    belongsTo:
-      - Owner
-
-  Homepage:
-    nameSingular: Home content
-    single: true
-    properties:
-      - title
-      - { name: description, type: richText }
-      - { name: cover, type: image }
+      - { name: name, validation: { required: true } }
+      - { name: email, type: email, validation: { required: true } }
+      - { name: phone }
+      - { name: message, type: text, validation: { required: true } }
+    policies:
+      read:
+        - access: admin
+      create:
+        - access: public
+      update:
+        - access: admin
+      delete:
+        - access: admin
